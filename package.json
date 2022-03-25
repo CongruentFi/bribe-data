@@ -1,0 +1,18 @@
+{
+  "name": "bribe-data",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "repository": "https://github.com/CongruentFi/bribe-data",
+  "author": "IoJupiterI",
+  "license": "AGPL-3.0-or-later",
+  "private": false,
+  "dependencies": {
+    "ethers": "^5.6.0",
+    "merkletreejs": "^0.2.31",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21"
+  }
+}

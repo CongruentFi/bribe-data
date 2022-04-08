@@ -27,12 +27,10 @@ async function main(): Promise<void> {
   let totalReward = BigNumber.from(0);
   const latestProof = proofPaths[0];
 
-  for await (const contents of proofPaths.map(file => readFile(resolve(dataPath, file), 'utf-8'))) {
-    const parsed = JSON.parse(contents);
-    Object.keys(parsed).forEach(key => {
-      totalReward = totalReward.add(BigNumber.from(parsed[key].usdc));
-    });
-  }
+  const data = JSON.parse(await readFile(resolve(dataPath, latestProof), 'utf-8'));
+  Object.keys(data).forEach(key => {
+    totalReward = totalReward.add(BigNumber.from(data[key].usdc));
+  });
 
   const summary: Summary = {
     totalReward: totalReward.toString(),
@@ -41,7 +39,8 @@ async function main(): Promise<void> {
 
   await writeFile(resolve(publicPath, './summary.json'), JSON.stringify(summary, null, 2));
 
-  console.log('generate summary is done.');
+  console.log(summary);
+  console.log('\ngenerate summary is done.');
 }
 
 main().catch(e => console.error(e));
